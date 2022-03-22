@@ -1,5 +1,5 @@
-# hello-world
-First thing for all 8/30/2021
+We first tried just adding a max or average pooling layer between Conv1 and Conv2. The maximum accuracy only reaches for about 46% and 77% respectively (the other parameters are in default).  Then realizing that the decreased accuracy might be because the averaging is taken over conv1 which entails only 8 channels, which is not sufficient enough and might lead to information loss. Consequently, we continue to add two Conv layers, one between Conv1 and Conv2 and the other between the AvgPool2D and Conv3. We also added one AvgPool2D just before Conv2 (so the eventual architecture would be, after reindexed, Image --> Conv1 --> Conv2 --> AvgPool2D(1) --> Conv3 --> AvgPool2D(2) --> Conv4 --> Conv5, using activation functions ReLU for all functions). 
 
-Just bought Adam Warlock last week. Super happy!
-Trying to find my music and literature!
+Then we set the parameters as required on the instruction: LR = 0.01, bs = 100, epochs = 2000. The resulting accuracy is around the same as the best result obtained previously (around 82%). However, notice there're two differences: 1. this time it takes only for about 1 minute instead of 5 minutes to obtain the result; and 2. previously we have LR = 0.01, bs = 300, and epochs = 3000 so the comparison is not particularly fair. Consequently, we then set the parameters as the same with those for our previously best model (LR = 0.01, bs = 300, epochs = 3000) and run on the same model. The dev accuracy is significantly enhanced to around 88% and it's happy to see that now it also takes no super long time: just around the same 5 minute period on the same scale with the previous model
+
+Generally, from our results we observe that increasing epochs, batchsize and learning rate would increasing our accuracy.
